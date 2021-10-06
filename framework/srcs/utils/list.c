@@ -6,25 +6,26 @@
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 14:58:14 by mkamei            #+#    #+#             */
-/*   Updated: 2021/10/06 11:54:24 by mkamei           ###   ########.fr       */
+/*   Updated: 2021/10/06 17:25:44 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-t_list	*ft_lstnew(void *content)
+t_ut_list	*ut_lstnew(char *test_name, t_test_func test_func)
 {
-	t_list	*lst;
+	t_ut_list	*lst;
 
-	lst = (t_list *)malloc(sizeof(t_list));
+	lst = (t_ut_list *)malloc(sizeof(t_ut_list));
 	if (lst == NULL)
 		return (NULL);
-	lst->content = content;
+	lst->name = test_name;
+	lst->test_func = test_func;
 	lst->next = NULL;
 	return (lst);
 }
 
-static t_list	*ft_lstlast(t_list *lst)
+static t_ut_list	*ut_lstlast(t_ut_list *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -33,9 +34,9 @@ static t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ut_lstadd_back(t_ut_list **lst, t_ut_list *new)
 {
-	t_list	*last;
+	t_ut_list	*last;
 
 	if (lst == NULL)
 		return ;
@@ -44,11 +45,11 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 		return ;
 	}
-	last = ft_lstlast(*lst);
+	last = ut_lstlast(*lst);
 	last->next = new;
 }
 
-int	ft_lstsize(t_list *lst)
+int	ut_lstsize(t_ut_list *lst)
 {
 	int	size;
 
@@ -61,17 +62,15 @@ int	ft_lstsize(t_list *lst)
 	return (size);
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ut_lstclear(t_ut_list **lst)
 {
-	t_list	*next;
+	t_ut_list	*next;
 
 	if (lst == NULL)
 		return ;
 	while (*lst)
 	{
 		next = (*lst)->next;
-		if (del)
-			del((*lst)->content);
 		free(*lst);
 		*lst = next;
 	}

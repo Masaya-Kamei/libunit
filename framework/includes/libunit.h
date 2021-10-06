@@ -6,7 +6,7 @@
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:08:09 by mkamei            #+#    #+#             */
-/*   Updated: 2021/10/06 12:36:05 by mkamei           ###   ########.fr       */
+/*   Updated: 2021/10/06 17:20:52 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,15 @@
 
 typedef int	(*t_test_func)(void);
 
-typedef struct s_unit_test
+typedef struct s_ut_list
 {
-	t_test_func		test_func;
-	char			*name;
-}					t_unit_test;
+	char				*name;
+	t_test_func			test_func;
+	struct s_ut_list	*next;
+}						t_ut_list;
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
-
-void	load_unit_test(t_list **test_list, char *test_name, t_test_func f);
-int		launch_unit_tests(t_list **test_list, char *test_title);
+void	load_unit_test(t_ut_list **test_list, char *test_name, t_test_func f);
+int		launch_unit_tests(t_ut_list **test_list, char *test_title);
 void	put_header(void);
 
 #endif

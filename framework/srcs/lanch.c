@@ -6,7 +6,7 @@
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:13:50 by mkamei            #+#    #+#             */
-/*   Updated: 2021/10/06 11:54:30 by mkamei           ###   ########.fr       */
+/*   Updated: 2021/10/06 17:26:53 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static int	judge_all_tests(int test_num, int ok_num)
 	}
 }
 
-int	launch_unit_tests(t_list **test_list, char *test_title)
+int	launch_unit_tests(t_ut_list **test_list, char *test_title)
 {
-	const int	test_num = ft_lstsize(*test_list);
+	const int	test_num = ut_lstsize(*test_list);
 	int			ok_num;
 	pid_t		pid;
-	t_list		*list;
+	t_ut_list	*list;
 	int			status;
 
 	printf("%s\n", test_title);
@@ -74,12 +74,12 @@ int	launch_unit_tests(t_list **test_list, char *test_title)
 		else if (pid == 0)
 		{
 			alarm(TIMEOUT);
-			exit(((t_unit_test *)list->content)->test_func());
+			exit(list->test_func());
 		}
 		wait(&status);
-		ok_num += judge_test(((t_unit_test *)list->content)->name, status) == 0;
+		ok_num += judge_test(list->name, status) == 0;
 		list = list->next;
 	}
-	ft_lstclear(test_list, free);
+	ut_lstclear(test_list);
 	return (judge_all_tests(test_num, ok_num));
 }
