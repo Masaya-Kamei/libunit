@@ -27,6 +27,6 @@ jobs:
       - name: 42 Norminette
         uses: alexandregv/norminette-action@v3
       - name: test in real-tests folder
-        run: make -C real-tests && ./real-tests/unit_test
+        run: make -C ./real-tests/unit_tests && ./real-tests/unit_tests/unit_test
       - name: test in tests folder
-        run: make -C tests && ./tests/unit_test
+        run: make -C ./tests/unit_tests && ./tests/unit_tests/unit_test
