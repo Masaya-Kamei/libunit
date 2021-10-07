@@ -6,7 +6,7 @@
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:13:50 by mkamei            #+#    #+#             */
-/*   Updated: 2021/10/06 17:26:53 by mkamei           ###   ########.fr       */
+/*   Updated: 2021/10/07 18:12:48 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ static int	judge_test(char *test_name, int status)
 	{
 		if (WEXITSTATUS(status) == 0)
 		{
-			printf("\t> %s\t: [%sOK%s]\n", test_name, GREEN, RESET);
+			printf("\t> %-40s: [%sOK%s]\n", test_name, GREEN, RESET);
 			return (0);
 		}
 		else
-			printf("\t> %s\t: [%sKO%s]\n", test_name, RED, RESET);
+			printf("\t> %-40s: [%sKO%s]\n", test_name, RED, RESET);
 	}
 	else if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGSEGV)
-			printf("\t> %s\t: [%sSEGV%s]\n", test_name, RED, RESET);
+			printf("\t> %-40s: [%sSEGV%s]\n", test_name, RED, RESET);
 		else if (WTERMSIG(status) == SIGBUS)
-			printf("\t> %s\t: [%sBUSE%s]\n", test_name, RED, RESET);
+			printf("\t> %-40s: [%sBUSE%s]\n", test_name, RED, RESET);
 		else if (WTERMSIG(status) == SIGALRM)
-			printf("\t> %s\t: [%sTIMEOUT%s]\n", test_name, RED, RESET);
+			printf("\t> %-40s: [%sTIMEOUT%s]\n", test_name, RED, RESET);
 		else if (WTERMSIG(status) == SIGFPE)
-			printf("\t> %s\t: [%sFPE%s]\n", test_name, RED, RESET);
+			printf("\t> %-40s: [%sFPE%s]\n", test_name, RED, RESET);
 		else
-			printf("\t> %s\t: [%sUNKNOWN SIGNAL%s]\n", test_name, RED, RESET);
+			printf("\t> %-40s: [%sUNKNOWN SIGNAL%s]\n", test_name, RED, RESET);
 	}
 	return (-1);
 }
@@ -63,7 +63,7 @@ int	launch_unit_tests(t_ut_list **test_list, char *test_title)
 	t_ut_list	*list;
 	int			status;
 
-	printf("%s\n", test_title);
+	printf("%s:\n", test_title);
 	ok_num = 0;
 	list = *test_list;
 	while (list)
