@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load.c                                             :+:      :+:    :+:   */
+/*   user_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 16:33:28 by mkamei            #+#    #+#             */
-/*   Updated: 2021/10/12 10:33:35 by mkamei           ###   ########.fr       */
+/*   Created: 2021/10/12 10:33:37 by mkamei            #+#    #+#             */
+/*   Updated: 2021/10/12 10:34:28 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
-#include "libunit_utils.h"
 
-void	load_unit_test(t_ut_list **test_list, char *test_name, t_test_func f)
+void	put_header(void)
 {
-	t_ut_list	*new_list;
+	printf("*********************************\n");
+	printf("***      42 - Unit Tests      ***\n");
+	printf("*********************************\n");
+}
 
-	new_list = ut_lstnew(test_name, f);
-	if (new_list == NULL)
-		exit_with_errout("malloc failed");
-	ut_lstadd_back(test_list, new_list);
+int	get_test_status(bool boolean)
+{
+	if (boolean)
+		return (0);
+	else
+		return (-1);
 }
