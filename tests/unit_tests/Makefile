@@ -6,7 +6,7 @@
 #    By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 14:08:54 by mkamei            #+#    #+#              #
-#    Updated: 2021/10/07 14:36:00 by mkamei           ###   ########.fr        #
+#    Updated: 2021/10/13 12:49:11 by mkamei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ $(LIBUNIT):
 			make $(LIBUNITTARGET) -C $(LIBUNITDIR)
 
 test	:	$(NAME)
-			./$(NAME) || :
+			@./$(NAME) || :
 
 clean	:
 			$(RM) $(OBJS)
@@ -78,7 +78,12 @@ fclean	: 	clean
 
 re		:	fclean all
 
-debug	:	CFLAGS += -g -fsanitize=address
-debug	:	re
+address	:	CC		=	clang
+address	:	CFLAGS	+=	-g -fsanitize=address
+address	:	re
 
-.PHONY	:	all clean fclean re debug
+leak	:	CC		=	clang
+leak	:	CFLAGS	+=	-g -fsanitize=leak
+leak	:	re
+
+.PHONY	:	all clean fclean re address leak
