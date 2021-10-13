@@ -1,4 +1,4 @@
-SRCSNAME:=	load.c lanch.c utils/list.c utils/utils.c
+SRCSNAME:=	load.c lanch.c user_utils.c utils/list.c utils/utils.c
 SRCSDIR	:=	./srcs
 SRCS	:=	$(addprefix $(SRCSDIR)/, $(SRCSNAME))
 
@@ -31,7 +31,12 @@ fclean	: 	clean
 
 re		:	fclean all
 
-debug	:	CFLAGS += -g -fsanitize=address
-debug	:	re
+address	:	CC		=	clang
+address	:	CFLAGS	+=	-g -fsanitize=address
+address	:	re
 
-.PHONY	:	all clean fclean re debug
+leak	:	CC		= 	clang
+leak	:	CFLAGS	+=	-g -fsanitize=leak
+leak	:	re
+
+.PHONY	:	all clean fclean re address leak
