@@ -6,13 +6,14 @@
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 14:58:14 by mkamei            #+#    #+#             */
-/*   Updated: 2021/10/06 17:25:44 by mkamei           ###   ########.fr       */
+/*   Updated: 2021/10/20 17:32:30 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
+#include "libunit_develop.h"
 
-t_ut_list	*ut_lstnew(char *test_name, t_test_func test_func)
+t_ut_list	*ut_lstnew(const char *test_name, t_test_func test_func)
 {
 	t_ut_list	*lst;
 

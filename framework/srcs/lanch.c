@@ -6,14 +6,20 @@
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:13:50 by mkamei            #+#    #+#             */
-/*   Updated: 2021/10/13 10:56:01 by mkamei           ###   ########.fr       */
+/*   Updated: 2021/10/20 17:33:33 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
-#include "libunit_utils.h"
+#include "libunit_develop.h"
 
-static int	judge_test(char *test_name, int status)
+static void	execute_unit_test(t_test_func test_func)
+{
+	alarm(TIMEOUT);
+	exit(test_func());
+}
+
+static int	judge_test(const char *test_name, const int status)
 {
 	int			signum;
 	const char	msgs[5][8] = {"SEGV", "BUSE", "TIMEOUT", "FPE", "ABRT"};
@@ -40,7 +46,7 @@ static int	judge_test(char *test_name, int status)
 	return (get_test_status(WIFEXITED(status) && WEXITSTATUS(status) == 0));
 }
 
-static int	judge_all_tests(int test_num, int ok_num)
+static int	judge_all_tests(const int test_num, const int ok_num)
 {
 	if (test_num == ok_num)
 		printf("\t%s%d/%d tests checked%s\n", GREEN, ok_num, test_num, RESET);
@@ -49,15 +55,17 @@ static int	judge_all_tests(int test_num, int ok_num)
 	return (get_test_status(test_num == ok_num));
 }
 
-int	launch_unit_tests(t_ut_list **test_list, char *test_title)
+int	launch_unit_tests(t_ut_list **test_list, const char *test_title)
 {
-	const int	test_num = ut_lstsize(*test_list);
+	int			test_num;
 	int			ok_num;
 	pid_t		pid;
 	t_ut_list	*list;
 	int			status;
 
+	setbuf(stdout, NULL);
 	printf("%s:\n", test_title);
+	test_num = 0;
 	ok_num = 0;
 	list = *test_list;
 	while (list)
@@ -66,12 +74,10 @@ int	launch_unit_tests(t_ut_list **test_list, char *test_title)
 		if (pid == -1)
 			exit_with_errout("fork failed");
 		else if (pid == 0)
-		{
-			alarm(TIMEOUT);
-			exit(list->test_func());
-		}
+			execute_unit_test(list->test_func);
 		wait(&status);
-		ok_num += judge_test(list->name, status) == 0;
+		ok_num += (judge_test(list->name, status) == 0);
+		test_num++;
 		list = list->next;
 	}
 	ut_lstclear(test_list);
