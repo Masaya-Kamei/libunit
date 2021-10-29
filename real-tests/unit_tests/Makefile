@@ -6,7 +6,7 @@
 #    By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 12:44:12 by mkamei            #+#    #+#              #
-#    Updated: 2021/10/13 11:01:20 by mkamei           ###   ########.fr        #
+#    Updated: 2021/10/29 12:33:30 by mkamei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,9 @@ LIBFTDIR			:= ../libft
 LIBFTNAME 			:= ft
 LIBFTINCLUDEDIR 	:= ../libft
 
-LIBUNITDIR			:= ../../framework
+LIBUNITDIR			:= ../..
 LIBUNITNAME 		:= unit
-LIBUNITINCLUDEDIR	:= ../../framework/includes
+LIBUNITINCLUDEDIR	:= ../../includes
 
 LIBINCLUDE	:= -I${LIBFTINCLUDEDIR} -I${LIBUNITINCLUDEDIR}
 LIBDIR		:= -L${LIBFTDIR} -L${LIBUNITDIR}
@@ -83,6 +83,9 @@ fclean	: 	clean
 			make fclean -C $(LIBUNITDIR)
 
 re		:	fclean all
+
+# Use llvm clang
+# For Macos, https://stackoverflow.com/questions/53456304/mac-os-leaks-sanitizer
 
 address	:	CC		=	clang
 address	:	CFLAGS	+=	-g -fsanitize=address

@@ -4,8 +4,8 @@ TEST_TARGET_DIR=./test_target
 TEST_TARGET_INCLUDE_DIR=./test_target
 UNIT_TESTS_DIR=./unit_tests
 UNIT_TESTS_INCLUDE_DIR=./unit_tests
-LIBUNIT_DIR=../framework
-LIBUNIT_INCLUDE_DIR=../framework/includes
+LIBUNIT_DIR=../
+LIBUNIT_INCLUDE_DIR=../includes
 
 make -C ${LIBUNIT_DIR}
 gcc -I${TEST_TARGET_INCLUDE_DIR} ${TEST_TARGET_DIR}/*.c \
