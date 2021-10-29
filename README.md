@@ -4,9 +4,11 @@ Clang unit-test framework.
 
 ## Usage example
 
-1. `git clone https://github.com/Masaya-Kamei/libunit.git`
-2. `cd libunit/sample`
-3. `./run_sample.sh`
+```zsh
+git clone https://github.com/Masaya-Kamei/libunit.git;
+cd libunit/sample;
+./run_sample.sh;
+```
 
 ## Tool
 
