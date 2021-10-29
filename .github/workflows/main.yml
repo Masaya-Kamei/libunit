@@ -29,7 +29,7 @@ jobs:
              python3 -m pip install --upgrade pip setuptools
              python3 -m pip install norminette
       - name: Run Norminette
-        run: norminette *.c *.h
+        run: norminette includes srcs
       - name: Install llvm clang
         run: |
              brew install llvm
