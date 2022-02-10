@@ -6,8 +6,11 @@ Clang unit-test framework.
 
 ```zsh
 git clone https://github.com/Masaya-Kamei/libunit.git;
-cd libunit/sample;
-./run_sample.sh;
+cd libunit;
+make;
+gcc -I./sample/test_target -I./includes -L./ -lunit sample/*/*.c;
+echo -e "\n---Output---";
+./a.out;
 ```
 
 ## Tool
