@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   01_basic.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 14:15:04 by mkamei            #+#    #+#             */
-/*   Updated: 2022/03/25 12:28:23 by mkamei           ###   ########.fr       */
+/*   Created: 2021/10/07 14:18:55 by mkamei            #+#    #+#             */
+/*   Updated: 2022/03/25 12:38:38 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "unit_test.h"
+#include "putendl_fd_test.h"
 
-int	main(void)
+int	putendl_fd_basic_test(void)
 {
-	int		status;
+	char	*str;
 
-	put_header();
-	status = 0;
-	status |= create_msg_launcher() == -1;
-	status |= div_launcher() == -1;
-	status |= is_prime_launcher() == -1;
-	status |= strlen_launcher() == -1;
-	status |= putendl_fd_launcher() == -1;
-	return (status);
+	capture_stdout();
+	ft_putendl_fd("abc", STDOUT_FILENO);
+	str = get_captured_stdout();
+	if (strcmp(str, "abc\n") == 0)
+	{
+		free(str);
+		return (0);
+	}
+	else
+	{
+		free(str);
+		return (-1);
+	}
 }

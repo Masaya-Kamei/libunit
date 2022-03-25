@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 14:15:04 by mkamei            #+#    #+#             */
-/*   Updated: 2022/03/25 12:28:23 by mkamei           ###   ########.fr       */
+/*   Created: 2022/03/25 12:06:46 by mkamei            #+#    #+#             */
+/*   Updated: 2022/03/25 12:38:18 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unit_test.h"
+#include "libfunc.h"
+#include <string.h>
 
-int	main(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int		status;
-
-	put_header();
-	status = 0;
-	status |= create_msg_launcher() == -1;
-	status |= div_launcher() == -1;
-	status |= is_prime_launcher() == -1;
-	status |= strlen_launcher() == -1;
-	status |= putendl_fd_launcher() == -1;
-	return (status);
+	if (s == NULL)
+		return ;
+	write(fd, s, strlen(s));
+	write(fd, "\n", 1);
 }

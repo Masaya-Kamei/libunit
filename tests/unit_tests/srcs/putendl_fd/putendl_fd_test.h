@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   putendl_fd_test.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 14:15:04 by mkamei            #+#    #+#             */
-/*   Updated: 2022/03/25 12:28:23 by mkamei           ###   ########.fr       */
+/*   Created: 2021/10/07 14:19:16 by mkamei            #+#    #+#             */
+/*   Updated: 2022/03/25 12:25:28 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unit_test.h"
+#ifndef PUTENDL_FD_TEST_H
+# define PUTENDL_FD_TEST_H
 
-int	main(void)
-{
-	int		status;
+# include <string.h>
+# include <stdlib.h>
 
-	put_header();
-	status = 0;
-	status |= create_msg_launcher() == -1;
-	status |= div_launcher() == -1;
-	status |= is_prime_launcher() == -1;
-	status |= strlen_launcher() == -1;
-	status |= putendl_fd_launcher() == -1;
-	return (status);
-}
+int		putendl_fd_basic_test(void);
+int		putendl_fd_big_test(void);
+
+#endif

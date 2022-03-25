@@ -6,7 +6,7 @@
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 11:08:09 by mkamei            #+#    #+#             */
-/*   Updated: 2021/10/20 17:32:05 by mkamei           ###   ########.fr       */
+/*   Updated: 2022/03/25 11:54:57 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_ut_list
 void	load_unit_test(
 			t_ut_list **test_list, const char *test_name, t_test_func f);
 int		launch_unit_tests(t_ut_list **test_list, const char *test_title);
+void	capture_stdout(void);
+char	*get_captured_stdout(void);
 void	put_header(void);
 int		get_test_status(bool boolean);
 

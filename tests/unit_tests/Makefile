@@ -6,7 +6,7 @@
 #    By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 14:08:54 by mkamei            #+#    #+#              #
-#    Updated: 2022/02/05 08:41:07 by mkamei           ###   ########.fr        #
+#    Updated: 2022/03/25 12:26:22 by mkamei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ SRCSNAME:=	main.c \
 			create_msg/00_lancher.c create_msg/01_basic.c \
 			div/00_lancher.c div/01_basic.c div/02_zero.c \
 			is_prime/00_lancher.c is_prime/01_basic.c is_prime/02_bigger.c \
-			strlen/00_lancher.c strlen/01_basic.c strlen/02_null.c
+			strlen/00_lancher.c strlen/01_basic.c strlen/02_null.c \
+			putendl_fd/00_lancher.c putendl_fd/01_basic.c putendl_fd/02_big.c
 SRCSDIR	:=	./srcs
 SRCS	:=	$(addprefix $(SRCSDIR)/, $(SRCSNAME))
 
@@ -48,7 +49,7 @@ LIBFUNC			:= $(LIBFUNCDIR)/libfunc.a
 LIBUNITTARGET	:= all
 LIBUNIT			:= $(LIBUNITDIR)/libunit.a
 
-all		:	$(NAME)
+all		:	libfunc libunit $(NAME)
 
 $(NAME)	:	$(LIBFUNC) $(LIBUNIT) $(OBJS)
 			$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIB) -o $@
@@ -57,10 +58,10 @@ $(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c
 			@mkdir -p $(dir $@)
 			$(CC) $(CFLAGS) $(INCLUDE) $(LIBINCLUDE) -o $@ -c $<
 
-$(LIBFUNC):
+libfunc:
 			make $(LIBFUNCTARGET) -C $(LIBFUNCDIR)
 
-$(LIBUNIT):
+libunit:
 			make $(LIBUNITTARGET) -C $(LIBUNITDIR)
 
 test	:	$(NAME)

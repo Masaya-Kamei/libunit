@@ -6,11 +6,11 @@
 #    By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 14:07:06 by mkamei            #+#    #+#              #
-#    Updated: 2022/02/05 08:39:29 by mkamei           ###   ########.fr        #
+#    Updated: 2022/03/25 12:07:50 by mkamei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCSNAME:=	ft_create_msg.c ft_div.c ft_is_prime.c ft_strlen.c
+SRCSNAME:=	ft_create_msg.c ft_div.c ft_is_prime.c ft_strlen.c ft_putendl_fd.c
 SRCSDIR	:=	./
 SRCS	:=	$(addprefix $(SRCSDIR)/, $(SRCSNAME))
 

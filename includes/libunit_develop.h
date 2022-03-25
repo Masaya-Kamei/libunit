@@ -6,7 +6,7 @@
 /*   By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 11:52:48 by mkamei            #+#    #+#             */
-/*   Updated: 2021/10/20 17:32:54 by mkamei           ###   ########.fr       */
+/*   Updated: 2022/03/25 11:58:22 by mkamei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <unistd.h>
+# include <limits.h>
+# include <pthread.h>
 # include "libunit.h"
 
 # define TIMEOUT 2

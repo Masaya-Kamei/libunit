@@ -1,4 +1,4 @@
-SRCSNAME:=	load.c lanch.c user_utils.c utils/list.c utils/utils.c
+SRCSNAME:=	load.c lanch.c user_utils.c stdout.c utils/list.c utils/utils.c
 SRCSDIR	:=	./srcs
 SRCS	:=	$(addprefix $(SRCSDIR)/, $(SRCSNAME))
 
