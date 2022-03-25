@@ -6,7 +6,7 @@
 #    By: mkamei <mkamei@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 14:08:54 by mkamei            #+#    #+#              #
-#    Updated: 2022/03/25 12:26:22 by mkamei           ###   ########.fr        #
+#    Updated: 2022/03/25 15:27:47 by mkamei           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ LIBFUNC			:= $(LIBFUNCDIR)/libfunc.a
 LIBUNITTARGET	:= all
 LIBUNIT			:= $(LIBUNITDIR)/libunit.a
 
-all		:	libfunc libunit $(NAME)
+all		:	$(NAME)
 
 $(NAME)	:	$(LIBFUNC) $(LIBUNIT) $(OBJS)
 			$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIB) -o $@
@@ -58,10 +58,10 @@ $(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c
 			@mkdir -p $(dir $@)
 			$(CC) $(CFLAGS) $(INCLUDE) $(LIBINCLUDE) -o $@ -c $<
 
-libfunc:
+$(LIBFUNC):	dummy
 			make $(LIBFUNCTARGET) -C $(LIBFUNCDIR)
 
-libunit:
+$(LIBUNIT):	dummy
 			make $(LIBUNITTARGET) -C $(LIBUNITDIR)
 
 test	:	$(NAME)
@@ -86,4 +86,4 @@ leak	:	CC		= 	/usr/local/opt/llvm/bin/clang
 leak	:	CFLAGS	+=	-g -fsanitize=leak
 leak	:	re
 
-.PHONY	:	all clean fclean re address leak
+.PHONY	:	all clean fclean re address leak dummy
